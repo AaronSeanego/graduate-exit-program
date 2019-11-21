@@ -8,6 +8,9 @@ import { FormsModule, ReactiveFormsModule, FormGroup} from '@angular/forms';
 import { RegisterFormComponent } from './register-form/register-form.component';
 import * as firebase from 'firebase';
 import { ExitProgramService} from './Service/exit-program.service';
+import {AngularFireAuthModule} from '@angular/fire/auth';
+import { HomeComponent } from './components/home/home.component';
+import { AngularFireModule } from '@angular/fire';
 
 var firebaseConfig = {
   apiKey: "AIzaSyDkju7iNCsC27HKxBjDOkNGEWUXY-Pt9eo",
@@ -27,13 +30,16 @@ firebase.analytics();
   declarations: [
     AppComponent,
     LogInComponent,
-    RegisterFormComponent
+    RegisterFormComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AngularFireAuthModule,
+    AngularFireModule.initializeApp(firebaseConfig),
   ],
   providers: [
     ExitProgramService

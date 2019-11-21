@@ -1,20 +1,6 @@
-<div>
-    <form [formGroup] = "LogInForm">
-        <table>
-            <tr>
-                <td>
-                    <input type = "text" placeholder = "Email" formControlName = "email"/>
-                </td>
-            </tr>
 
-            <tr>
-                <td>
-                    <input type = "text" placeholder = "Password" formControlName = "password"/>
-                </td>
-            </tr>
-
-            <tr><button class = "Log_In">Log In</button></tr>
-            <tr><button class = "Register" [routerLink] = "['/register']">Register</button></tr>
-        </table>
-    </form>
-</div>
+   
+    <input type = "text" placeholder = "Email" [(ngModel)]="mail"/><br>
+    <input type = "text" placeholder = "password"  [(ngModel)]="pass"/><br>
+    <button (click)="login()">Log In</button>
+    
