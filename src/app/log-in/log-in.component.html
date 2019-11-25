@@ -1,6 +1,24 @@
+<form  class="form"[formGroup]="validations_form" (ngSubmit)="loginUser(validations_form.value)">
 
-   
-    <input type = "text" placeholder = "Email" [(ngModel)]="mail"/><br>
-    <input type = "text" placeholder = "password"  [(ngModel)]="pass"/><br>
-    <button (click)="login()">Log In</button>
-    
+<input type = "text" placeholder = "Email" [(ngModel)]="mail" formControlName="email"/><br>
+<div class="validation-errors">
+        <ng-container *ngFor="let validation of validation_messages.email">
+          <div class="error-message" *ngIf="validations_form.get('email').hasError(validation.type) && (validations_form.get('email').dirty || validations_form.get('email').touched)">
+            {{ validation.message }}
+          </div>
+        </ng-container>
+      </div>
+
+<input type = "text" placeholder = "password"  [(ngModel)]="pass" formControlName="password"/><br>
+<div class="validation-errors">
+        <ng-container *ngFor="let validation of validation_messages.password">
+          <div class="error-message" *ngIf="validations_form.get('password').hasError(validation.type) && (validations_form.get('password').dirty || validations_form.get('password').touched)">
+            {{ validation.message }}
+          </div>
+        </ng-container>
+      </div>
+<button (click)="login()">Log In</button>
+       
+</form>
+
+
