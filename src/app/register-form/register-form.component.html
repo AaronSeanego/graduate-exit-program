@@ -39,12 +39,13 @@
         <tr><button class = "create_account">Create Account</button></tr>
     </form> -->
     <p>register works!</p>
-<button (click)="logout()">home</button>
 
-<div style="position: absolute; max-width: 90%; min-width: 90%; z-index: 999; " class="search">
-    <ul lines="none" *ngIf="addresses.length > 0" color="lightb" style="background: var(--ion-item-background,var(--ion-background-color, black)); ">
+    <input type="text" (click)="search($event)" [value]="selectedAddress" />
 
-        <div *ngFor="let address of addresses ; let i=index" (click)="onSelect(address, i)" color="dark">
+<div class="search">
+    <ul lines="none" *ngIf="addresses.length > 0" color="light" >
+
+        <div *ngFor="let address of addresses ; let i=index"style="background:  lightblue; " (click)="onSelect(address, i)" >
 
            
             <p class="searchv">{{ address}}</p>
@@ -54,3 +55,4 @@
 
 </div>
 
+<button (click)="logout()">home</button>

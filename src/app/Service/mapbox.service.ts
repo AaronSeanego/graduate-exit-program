@@ -1,6 +1,8 @@
-import { Injectable } from '@angular/core';
+
+import { Component,Injectable, ElementRef, ViewChild } from '@angular/core';
 
 import { HttpClient } from '@angular/common/http';
+import { map } from 'rxjs/operators';
 import mapboxgl from 'mapbox-gl';
 export interface MapboxOutput {
   attribution: string;
@@ -21,23 +23,30 @@ export interface Geometry {
   providedIn: 'root'
 })
 export class MapboxService {
+  @ViewChild('map', { static: false }) mapNativeElementnativeElement: ElementRef;
   map;
   constructor(private http: HttpClient) { 
-    mapboxgl.accessToken = 'pk.eyJ1Ijoibm51bnUiLCJhIjoiY2p4cTIxazB3MG0wYTNncm4wanF0cDVjaiJ9.v0khvZZss9z_U2MroA2PVQ';
-    this.map = new mapboxgl.Map({
-     
-      style: 'mapbox://styles/mapbox/streets-v11',
-      zoom: 10,
-      // center: [lng, lat],
-      center: [28.218370, -25.731340]
-    });
+  
   }
 
+  run(lnglat){
+    // -73.989,40.733.json?access_token=pk.eyJ1IjoibmVvLXB1bGUiLCJhIjoiY2p4cTF6Z2huMGx6czNtbnY2aWdwdWU5NiJ9._Dj2fBUZgCoryf1ehZTweQ;
+
+    const url = 'https://api.mapbox.com/geocoding/v5/mapbox.places/';
+    // return this.http.get(url + lnglat.lng+','+lnglat.lat + '.json?types=address&access_token=pk.eyJ1IjoibmVvLXB1bGUiLCJhIjoiY2p4cTI0MGF0MGlnajNjbDMzMW9nMzJ6OSJ9._Dj2fBUZgCoryf1ehZTweQ')
+    //   .pipe(map((res: MapboxOutput) => {
+    //     return res.features;
+    //   }))
+      console.log( this.http.get(url + lnglat.lng+','+lnglat.lat + '.json?types=address&access_token=pk.eyJ1IjoibmVvLXB1bGUiLCJhIjoiY2p4cTI0MGF0MGlnajNjbDMzMW9nMzJ6OSJ9._Dj2fBUZgCoryf1ehZTweQ')
+      .pipe(map((res: MapboxOutput) => {
+        return res.features;
+      })))
+  }
   search_word(query: string) {
 
     const url = 'https://api.mapbox.com/geocoding/v5/mapbox.places/';
     return this.http.get(url + query + '.json?types=address&access_token=pk.eyJ1IjoibmVvLXB1bGUiLCJhIjoiY2p4cTI0MGF0MGlnajNjbDMzMW9nMzJ6OSJ9.QgND5rJKyVYEmTjBJIrq3g')
-      .pipe(this.map((res: MapboxOutput) => {
+      .pipe(map((res: MapboxOutput) => {
         return res.features;
       }))
   }
