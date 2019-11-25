@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ExitProgramService } from '../Service/exit-program.service';
+import { identifierModuleUrl } from '@angular/compiler';
+import { AngularFirestore } from '@angular/fire/firestore';
 import { AuthGuardService } from '../Service/auth-guard.service';
 import { Router } from '@angular/router';
+import { MapboxService, Feature } from '..//Service/mapbox.service';
 @Component({
   selector: 'app-register-form',
   templateUrl: './register-form.component.html',
@@ -15,16 +18,107 @@ export class RegisterFormComponent implements OnInit {
   contact;
   password;
   confirm_password;
-  
-  constructor(
-    public RegisterService:ExitProgramService,
-    private authService : AuthGuardService,
-    private route :Router) { }
-  
+  addresses: string[] = [];
+  coodinateses: string[] = [];
+  list: any;
 
-       logout(){
-        this.authService.signOut();
-        }
+  lng;
+  lat;
+
+  selectedAddress = null;
+  selectedcoodinates = null;
+  constructor(public RegisterService:ExitProgramService,
+              private afs: AngularFirestore,
+              private authService : AuthGuardService,
+              private route :Router,
+              public mapboxService: MapboxService) { }
+
+
+  // registerGraduate(){
+    
+  //   this.afs.collection('Graduate/').doc(this.uid).set({
+  
+  //     firstName: nameF,
+  //     lastName: nameL,
+  //     Email: email,
+  //     Surname: surname,
+  //     graduateDate : date,
+  //     collegeFET : skillsdev,
+  //     formalExpirience : expirience,
+  //     Gender: gender,
+  //     identity_no : id,
+  //     Age: age,
+  //     Contact: contact,
+  //     Address: address,
+  //     Qualification: qualification,
+  //     work_hours : number,
+  //     contractor : skill,
+  //     Price: price,
+      
+
+  //   }).then(() => {
+
+  //     this.authService.updateRegistered(this.uid, "yes").then(async () => {
+  //       (await loading).dismiss();
+  //       this.route.navigateByUrl('profile')
+  //     })
+
+  //   }).catch(err => {
+  //     alert(err.message)
+  //   })
+  // }
+try(){
+  console.log("*")
+}
+  search(event: any) {
+  
+    const searchTerm = event.target.value.toLowerCase();
+ 
+    if (searchTerm && searchTerm.length > 0) {
+      this.mapboxService.search_word(searchTerm)
+        .subscribe((features: Feature[]) => {
+          
+          this.coodinateses = features.map(feat => feat.geometry)
+          this.addresses = features.map(feat => feat.place_name)
+          this.list = features;
+          console.log(this.addresses)
+          console.log(this.list)
+        });
+    } else {
+      this.addresses = [];
+    }
+    console.log(searchTerm);
+  }
+  clear() {
+    this.addresses = []
+    console.log("hello")
+  }
+  onSelect(address, i) {
+    this.selectedAddress = address;
+    //  selectedcoodinates=
+
+    console.log("lng:" + JSON.stringify(this.list[i].geometry.coordinates[0]))
+    console.log("lat:" + JSON.stringify(this.list[i].geometry.coordinates[1]))
+    this.lng = JSON.stringify(this.list[i].geometry.coordinates[0])
+    this.lat = JSON.stringify(this.list[i].geometry.coordinates[1])
+
+    console.log("index =" + i)
+    console.log(this.selectedAddress)
+
+    //add to FireBase
+    // this.dog.collection('coordinate').add({
+    //   lat: this.temp.coordinates[1],
+    //   lng: this.temp.coordinates[0],
+    //   address: address,
+    // }).then(function (ref) {
+    //   console.log("document was written with ID : " + ref);
+    //   alert("physical address : " + address + " , saved successful..")
+    // }).catch(function (ee) {
+    //   console.log(ee)
+    //   console.log("error while processing ..")
+    // });
+    this.addresses = [];
+  }
   ngOnInit() {
   }
 

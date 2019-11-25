@@ -1,4 +1,4 @@
-<div>
+
     <!-- <form>
         <tr>
             <td>
@@ -39,6 +39,20 @@
         <tr><button class = "create_account">Create Account</button></tr>
     </form> -->
     <p>register works!</p>
-<button (click)="logout()">home</button>
+
+    <input type="text" (click)="search($event)" [value]="selectedAddress" />
+
+<div class="search">
+    <ul lines="none" *ngIf="addresses.length > 0" color="light" >
+
+        <div *ngFor="let address of addresses ; let i=index"style="background:  lightblue; " (click)="onSelect(address, i)" >
+
+           
+            <p class="searchv">{{ address}}</p>
+        </div>
+
+    </ul>
+
 </div>
 
+<button (click)="logout()">home</button>
