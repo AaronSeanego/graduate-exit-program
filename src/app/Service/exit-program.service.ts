@@ -6,8 +6,46 @@ import * as firebase from 'firebase';
 })
 export class ExitProgramService {
   
+  userID;
+  userEmail;
+  GraduatesArray = [];
   constructor() {
   }
+
+  signup(name,surname,gender,age,email,contact,address,qualification,status,price,password)
+  {
+   var db = firebase.firestore();
+​
+   return db.collection("Graduate/").add({
+     Username: name,
+     Surname: surname,
+     Email: email,
+     Gender: gender,
+     Age: age,
+     Contact: contact,
+     Address: address,
+     Qualification: qualification,
+     Status: status,
+     Price: price,
+     Password: password
+   }).then((docRef) => {
+     console.log("Document written with ID: ", docRef.id);
+ }).catch((error) => {
+     console.error("Error adding document: ", error);
+ });
+   
+  }
+​
+ getGraduates() {
+   var db = firebase.firestore();
+   return db.collection("Graduates").get().then((querySnapshot) => {
+     querySnapshot.forEach((doc) => {
+         this.GraduatesArray.push(doc);
+     });
+ });
+​
+ return this.GraduatesArray;
+ }
 
   // signup(name,surname,email,contact,password)
   //  {
@@ -42,4 +80,6 @@ export class ExitProgramService {
   //    });
     
   //  }
+
+  
 }

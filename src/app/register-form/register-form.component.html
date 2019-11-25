@@ -55,4 +55,76 @@
 
 </div>
 
-<button (click)="logout()">home</button>
+<button (click)="try()">home</button>
+
+<div>
+    <form [formGroup] = "register_form">
+        <tr>
+            <td>
+                <input type = "text" placeholder = "Name" [(ngModel)] = "name" formControlName = "name"/>
+            </td>
+        </tr>
+​
+        <tr>
+            <td>
+                <input type = "text" placeholder = "Surname" [(ngModel)] = "surname" formControlName = "surname"/>
+            </td>
+        </tr>
+        
+        <tr>
+            <td>
+                <input type = "text" placeholder = "Gender" [(ngModel)] = "gender" formControlName = "gender"/>
+            </td>
+        </tr>
+​
+        <tr>
+            <td>
+                <input type = "text" placeholder = "Age" [(ngModel)] = "age" formControlName = "age"/>
+            </td>
+        </tr>
+​
+        <tr>
+            <td>
+                <input type = "text" placeholder = "Email" [(ngModel)] = "email" formControlName = "email"/>
+            </td>
+        </tr>
+​
+        <tr>
+            <td>
+                <input type = "text" placeholder = "Contact" [(ngModel)] = "contact" formControlName = "contact"/>
+            </td>
+        </tr>
+​
+        <tr>
+            <td>
+                <input type = "text" placeholder = "Address" [(ngModel)] = "address" formControlName = "address"/>
+            </td>
+        </tr>
+​
+        <tr>
+            <td>
+                <input type = "text" placeholder = "Qualification" [(ngModel)] = "qualification" formControlName = "qualification"/>
+            </td>
+        </tr>
+​
+        <tr>
+            <td>
+                <input type = "text" placeholder = "Price" [(ngModel)] = "price" formControlName = "price"/>
+            </td>
+        </tr>
+​
+        <tr>
+            <td>
+                <input type = "password" placeholder = "Password" [(ngModel)] = "password" formControlName = "password"/>
+            </td>
+        </tr>
+​
+        <tr>
+            <td>
+                <input type = "password" placeholder = "Confirm Password" [(ngModel)] = "confirm_password" formControlName = "confirm_password"/>
+            </td>
+        </tr>
+​
+        <tr><button class = "create_account" (click) = "CreateAccount()">Create Account</button></tr>
+    </form>
+</div>
