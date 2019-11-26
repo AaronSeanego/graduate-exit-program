@@ -1,6 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
+import {MatButtonModule} from '@angular/material/button';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LogInComponent } from './log-in/log-in.component';
@@ -11,6 +13,7 @@ import { ExitProgramService} from './Service/exit-program.service';
 import {AngularFireAuthModule} from '@angular/fire/auth';
 import { HomeComponent } from './components/home/home.component';
 import { AngularFireModule } from '@angular/fire';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 var firebaseConfig = {
   apiKey: "AIzaSyDkju7iNCsC27HKxBjDOkNGEWUXY-Pt9eo",
@@ -40,6 +43,10 @@ firebase.analytics();
     ReactiveFormsModule,
     AngularFireAuthModule,
     AngularFireModule.initializeApp(firebaseConfig),
+    BrowserAnimationsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule
   ],
   providers: [
     ExitProgramService
