@@ -12,6 +12,12 @@ export class ExitProgramService {
   constructor() {
   }
 
+<<<<<<< HEAD
+  // generateKey() {
+  //   let newKey = firebase.database().ref().child('Graduate/').push().key;
+  //   return newKey;
+  // }
+=======
   signup(name,surname,gender,age,email,contact,address,qualification,status,price,password)
   {
    var db = firebase.firestore();
@@ -51,35 +57,48 @@ export class ExitProgramService {
   //  {
   //   var db = firebase.firestore();
   //   console.log(name,email,password,"signup details serv")
+>>>>>>> df6258e0b5717233cdcd212f77945d9bbc1188be
 
-  //  return  firebase.auth().createUserWithEmailAndPassword(email,password).then((user)=>{
-  //   // this.setCurrentSession(firebase.auth())
-  //     //  console.log("user is registered");
-  //     //   this.userID=user['user'].uid;
-  //     //   this.userEmail=user['user'].email;
-       
-  //       firebase.database().ref('users/').set({
-  //        username: name,
-  //        surname: surname,
-  //        email: email,
-  //        contact: contact,
-  //        password : password,
- 
-  //      });
-  //     return user
-  //    }).catch((error)=> {
-  //      // Handle Errors here.
-  //      var errorCode = error.code;
-  //      var errorMessage = error.message;
-  //     return errorMessage
-  //      // ...
-  //     //  console.log(errorMessage)
-  //     //  this.data=errorMessage
-  //     //  console.log(this.data)
-      
-  //    });
+  signup(name,surname,gender,age,email,contact,address,qualification,category,status,price,password)
+   {
+    var db = firebase.firestore();
+
+    return db.collection("Graduate/").add({
+      Username: name,
+      Surname: surname,
+      Email: email,
+      Gender: gender,
+      Age: age,
+      Contact: contact,
+      Address: address,
+      Qualification: qualification,
+      Category: category,
+      Status: status,
+      Price: price,
+      Password: password
+    }).then((docRef) => {
+      console.log("Document written with ID: ", docRef.id);
+  }).catch((error) => {
+      console.error("Error adding document: ", error);
+  });
     
+<<<<<<< HEAD
+   }
+
+  getGraduates() {
+    var db = firebase.firestore();
+    return db.collection("Graduates/").get().then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+          this.GraduatesArray.push(doc);
+        });
+    });
+  }
+
+  // return this.GraduatesArray;
+  // }
+=======
   //  }
 
   
+>>>>>>> df6258e0b5717233cdcd212f77945d9bbc1188be
 }
