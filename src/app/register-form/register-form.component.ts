@@ -5,6 +5,8 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { AuthGuardService } from '../Service/auth-guard.service';
 import { Router } from '@angular/router';
 import { MapboxService, Feature } from '..//Service/mapbox.service';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+
 @Component({
   selector: 'app-register-form',
   templateUrl: './register-form.component.html',
@@ -24,6 +26,16 @@ export class RegisterFormComponent implements OnInit {
 
   lng;
   lat;
+  gender;
+  age;
+  address;
+  qualification;
+  price;
+ 
+  Status = true;
+  
+  register_form:FormGroup;
+
 
   selectedAddress = null;
   selectedcoodinates = null;
@@ -34,6 +46,9 @@ export class RegisterFormComponent implements OnInit {
               public mapboxService: MapboxService) { }
 
 
+              
+            
+                
   // registerGraduate(){
     
   //   this.afs.collection('Graduate/').doc(this.uid).set({
@@ -69,6 +84,7 @@ export class RegisterFormComponent implements OnInit {
   // }
 try(){
   console.log("*")
+  this.authService.signOut();
 }
   search(event: any) {
   
@@ -93,9 +109,13 @@ try(){
     this.addresses = []
     console.log("hello")
   }
+
   onSelect(address, i) {
     this.selectedAddress = address;
     //  selectedcoodinates=
+    this.addresses = [];
+    console.log(this.selectedAddress)
+
 
     console.log("lng:" + JSON.stringify(this.list[i].geometry.coordinates[0]))
     console.log("lat:" + JSON.stringify(this.list[i].geometry.coordinates[1]))
@@ -103,7 +123,7 @@ try(){
     this.lat = JSON.stringify(this.list[i].geometry.coordinates[1])
 
     console.log("index =" + i)
-    console.log(this.selectedAddress)
+    
 
     //add to FireBase
     // this.dog.collection('coordinate').add({
@@ -117,11 +137,27 @@ try(){
     //   console.log(ee)
     //   console.log("error while processing ..")
     // });
-    this.addresses = [];
+   
   }
   ngOnInit() {
   }
-
   CreateAccount() {
-  }
+    ​
+       
+        this.RegisterService.signup(
+          this.name,
+          this.surname,
+          this.gender,
+          this.age,
+          this.email,
+          this.contact,
+          this.address,
+          this.qualification,
+          this.Status,
+          this.price,
+          this.password
+        ).then((data) => {
+          console.log(data);
+        })
+      }
 }

@@ -35,7 +35,7 @@ export class AuthGuardService {
     this.afAuth.auth.signOut().then((success) => {
      this.route.navigateByUrl('login').then(()=>{
        console.log("success" + success);
-       this.route.navigateByUrl('');
+       this.route.navigateByUrl('/login');
      })
      
    
