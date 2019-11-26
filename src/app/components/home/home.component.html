@@ -1,2 +1,129 @@
 <p>home works!</p>
 <button [routerLink]="['/register']">log Out</button>
+<!-- <div  #map id='map'></div>
+<pre id='coordinates' class='coordinates'></pre> -->
+<button (click)="try()">try</button>
+
+<section style = "float: left;">
+    <canvas id = "myChart" width="400" height="400"></canvas>
+
+    <!-- <canvas id = "Pie" width="400" height="400"></canvas> -->
+</section>
+
+<div>
+    <table>
+        <th>Name</th>
+        <th>Surname</th>
+        <th>Gender</th>
+        <th>Age</th>
+        <th>Email</th>
+        <th>Contact</th>
+        <th>Address</th>
+        <th>Qualification</th>
+        <th>Category</th>
+        <th>Price</th>
+
+        <tr *ngFor = "let grads of GraduateArray">
+            <td>{{grads.Username}}</td>
+            <td>{{grads.Surname}}</td>
+            <td>{{grads.Gender}}</td>
+            <td>{{grads.Age}}</td>
+            <td>{{grads.Email}}</td>
+            <td>{{grads.Contact}}</td>
+            <td>{{grads.Address}}</td>
+            <td>{{grads.Qualification}}</td>
+            <td>{{grads.Category}}</td>
+            <td>{{grads.Price}}</td>
+        </tr>
+        <tr>
+            <td>{{working}}</td>
+        </tr>
+
+        <tr>
+            <td>{{not_working}}</td>
+        </tr>
+
+        <tr>
+            <td>{{total_grads}}</td>
+        </tr>
+    </table>
+</div>
+
+<div>
+    <form [formGroup] = "register_form">
+        <tr>
+            <td>
+                <input type = "text" placeholder = "Name" [(ngModel)] = "name" formControlName = "name"/>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <input type = "text" placeholder = "Surname" [(ngModel)] = "surname" formControlName = "surname"/>
+            </td>
+        </tr>
+        
+        <tr>
+            <td>
+                <input type = "text" placeholder = "Gender" [(ngModel)] = "gender" formControlName = "gender"/>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <input type = "text" placeholder = "Age" [(ngModel)] = "age" formControlName = "age"/>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <input type = "text" placeholder = "Email" [(ngModel)] = "email" formControlName = "email"/>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <input type = "text" placeholder = "Contact" [(ngModel)] = "contact" formControlName = "contact"/>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <input type = "text" placeholder = "Address" [(ngModel)] = "address" formControlName = "address"/>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <input type = "text" placeholder = "Qualification" [(ngModel)] = "qualification" formControlName = "qualification"/>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <input type = "text" placeholder = "Price" [(ngModel)] = "price" formControlName = "price"/>
+            </td>
+        </tr>
+        
+        <tr>
+            <td>
+                <input type = "text" placeholder = "Category" [(ngModel)] = "category" formControlName = "category"/>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <input type = "password" placeholder = "Password" [(ngModel)] = "password" formControlName = "password"/>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <input type = "password" placeholder = "Confirm Password" [(ngModel)] = "confirm_password" formControlName = "confirm_password"/>
+            </td>
+        </tr>
+
+        <tr><button class = "create_account" (click) = "CreateAccount()">Create Account</button></tr>
+    </form>
+</div>
+
