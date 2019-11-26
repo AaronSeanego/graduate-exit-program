@@ -47,7 +47,11 @@ export class RegisterFormComponent implements OnInit {
 
 
               
-            
+              public handleAddressChange(address: any) {
+                // Do some stuff
+                this.selectedAddress = address;
+                console.log(this.selectedAddress)
+            }
                 
   // registerGraduate(){
     

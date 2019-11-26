@@ -13,6 +13,9 @@ import { HomeComponent } from './components/home/home.component';
 import { AngularFirestoreModule  } from '@angular/fire/firestore';
 import { AngularFireModule } from '@angular/fire';
 import {HttpClientModule} from '@angular/common/http'
+import { GooglePlaceModule } from "ngx-google-places-autocomplete";
+
+
 var firebaseConfig = {
   apiKey: "AIzaSyDkju7iNCsC27HKxBjDOkNGEWUXY-Pt9eo",
   authDomain: "exitprogramcms.firebaseapp.com",
@@ -44,6 +47,7 @@ firebase.analytics();
     ReactiveFormsModule,
     AngularFireAuthModule,
     AngularFireModule.initializeApp(firebaseConfig),
+    GooglePlaceModule
   ],
   providers: [
     ExitProgramService
