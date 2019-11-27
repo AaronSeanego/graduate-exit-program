@@ -1,6 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
+import {MatButtonModule} from '@angular/material/button';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LogInComponent } from './log-in/log-in.component';
@@ -12,6 +14,8 @@ import {AngularFireAuthModule} from '@angular/fire/auth';
 import { HomeComponent } from './components/home/home.component';
 import { AngularFirestoreModule  } from '@angular/fire/firestore';
 import { AngularFireModule } from '@angular/fire';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 import {HttpClientModule} from '@angular/common/http'
 import { GooglePlaceModule } from "ngx-google-places-autocomplete";
 import { ViewGradsComponent } from './components/view-grads/view-grads.component';
@@ -49,7 +53,11 @@ firebase.analytics();
     ReactiveFormsModule,
     AngularFireAuthModule,
     AngularFireModule.initializeApp(firebaseConfig),
-    GooglePlaceModule
+    GooglePlaceModule,
+    BrowserAnimationsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule
   ],
   providers: [
     ExitProgramService
