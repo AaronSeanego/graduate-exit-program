@@ -14,6 +14,7 @@ import { AngularFirestoreModule  } from '@angular/fire/firestore';
 import { AngularFireModule } from '@angular/fire';
 import {HttpClientModule} from '@angular/common/http'
 import { GooglePlaceModule } from "ngx-google-places-autocomplete";
+import { ViewGradsComponent } from './components/view-grads/view-grads.component';
 
 
 var firebaseConfig = {
@@ -35,7 +36,8 @@ firebase.analytics();
     AppComponent,
     LogInComponent,
     RegisterFormComponent,
-    HomeComponent
+    HomeComponent,
+    ViewGradsComponent
   ],
   imports: [
     BrowserModule,

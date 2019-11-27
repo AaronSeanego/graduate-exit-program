@@ -1,0 +1,67 @@
+<div>
+        <table>
+            <th>Name</th>
+            <th>Surname</th>
+            <th>Gender</th>
+            <th>Age</th>
+            <th>Email</th>
+            <th>Contact</th>
+            <th>Address</th>
+            <th>Qualification</th>
+            <th>Category</th>
+            <th>Price</th>
+    
+            <tr *ngFor = "let grads of categories | async">
+                <td>{{grads.Username}}</td>
+                <td>{{grads.Surname}}</td>
+                <td>{{grads.Gender}}</td>
+                <td>{{grads.Age}}</td>
+                <td>{{grads.Email}}</td>
+                <td>{{grads.Contact}}</td>
+                <td>{{grads.Address}}</td>
+                <td>{{grads.Qualification}}</td>
+                <td>{{grads.Category}}</td>
+                <td>{{grads.Price}}</td>
+            </tr>
+            <!-- <tr *ngFor = "let cat of category | async">
+                    <td>{{cat.course}}</td>
+                </tr>  -->
+            <tr> 
+                <td>{{working}}</td>
+            </tr>
+    
+            <tr>
+                <td>{{not_working}}</td>
+            </tr>
+    
+            <tr>
+                <td>{{total_grads}}</td>
+            </tr>
+        <tr>
+            <td class="dropdown" >
+                    <!-- {{grads.course}} -->
+                    </td>
+                  
+                </tr>
+            <!-- <div>
+                Pick your favorite hero
+                (<label><input type="checkbox" checked (change)="showSad = !showSad">show sad</label>)
+              </div> -->
+           
+    
+             <!-- <select [(ngModel)]="hero">
+                 <ng-container *ngFor="let h of heroes">
+                  <ng-container *ngIf="showSad || h.emotion !== 'sad'">
+                    <option [ngValue]="h">{{h.name}} ({{h.emotion}})</option>
+                  </ng-container>
+                </ng-container> 
+            </select>   -->
+            <!-- <tr>
+            <td class="dropdown"  *ngFor="let cat of categories">
+                {{cat.course}}
+                </td>
+              
+            </tr> -->
+        </table>
+    </div>
+    

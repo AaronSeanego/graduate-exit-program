@@ -6,6 +6,7 @@ import * as firebase from 'firebase';
 import { firestore } from 'firebase';
 import { FormGroup,FormBuilder,Validators } from '@angular/forms'
 import { ExitProgramService } from 'src/app/Service/exit-program.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -16,11 +17,8 @@ export class HomeComponent implements OnInit {
   posLat : number;
   pos : any = [];
   coords : any = [];
-  GraduateArray = [];
-  working = 0;
-  not_working = 0;
-  total_grads = 0;
-  GraphData = [];
+
+  
 
   name;
   surname;
@@ -41,7 +39,8 @@ export class HomeComponent implements OnInit {
   constructor(private authService : AuthGuardService,
               private MapboxService : MapboxService,
               public formGroup:FormBuilder,
-              public exitProgramService: ExitProgramService ) { 
+              public exitProgramService: ExitProgramService,
+              private route :Router, ) { 
     if (navigator.geolocation) {
       // 🗺️ yep, we can proceed!
       console.log("success geolocation")
@@ -59,25 +58,29 @@ export class HomeComponent implements OnInit {
       console.log("fail geolocation")
     }
 
-    var db = firebase.firestore();
-    db.collection("Graduate/").get().then((querySnapshot) => {
-      querySnapshot.forEach((doc) => {
-        // console.log(doc.data().Address);
-        this.GraduateArray.push(doc.data());
-        this.total_grads = this.total_grads + 1;
-        if(doc.data().Status == true){
-          this.working = this.working + 1;
-        }else{
-          this.not_working = this.not_working + 1;
-        }
+    
+    
 
-        this.GraphData.push({
-          Working: this.working,
-          NotWorking: this.not_working,
-          TotalGrads: this.total_grads
-        })
-        });
-    });
+
+
+    // db.collection("category/").get().then((querySnapshot) => {
+    //   querySnapshot.forEach((doc) => {
+    //     // console.log(doc.data().Address);
+    //     this.GraduateArray.push(doc.data());
+    //     this.total_grads = this.total_grads + 1;
+    //     if(doc.data().Status == true){
+    //       this.working = this.working + 1;
+    //     }else{
+    //       this.not_working = this.not_working + 1;
+    //     }
+
+    //     this.GraphData.push({
+    //       Working: this.working,
+    //       NotWorking: this.not_working,
+    //       TotalGrads: this.total_grads
+    //     })
+    //     });
+    // });
 
     this.register_form = formGroup.group({
       name: ["",[Validators.required]],
@@ -98,11 +101,10 @@ export class HomeComponent implements OnInit {
 
 try(){
   console.log(this.pos); 
+  this.route.navigateByUrl('register')
 }
   
-  logout(){
-    this.authService.signOut();
-    }
+
   
   ngOnInit() {
 
@@ -191,8 +193,8 @@ try(){
         this.qualification,
         this.category,
         this.Status,
-        this.price,
-        this.password
+        this.price
+        // this.password
       ).then((data) => {
         console.log(data);
       })
