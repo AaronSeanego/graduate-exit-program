@@ -4,8 +4,8 @@
 <pre id='coordinates' class='coordinates'></pre> -->
 <button (click)="try()">try</button>
 
-<section style = "float: left;">
-    <canvas id = "myChart" width="400" height="400"></canvas>
+<section style="float: left;">
+    <canvas id="myChart" width="400" height="400"></canvas>
 
     <!-- <canvas id = "Pie" width="400" height="400"></canvas> -->
 </section>
@@ -23,7 +23,7 @@
         <th>Category</th>
         <th>Price</th>
 
-        <tr *ngFor = "let grads of GraduateArray">
+        <tr *ngFor="let grads of GraduateArray">
             <td>{{grads.Username}}</td>
             <td>{{grads.Surname}}</td>
             <td>{{grads.Gender}}</td>
@@ -50,80 +50,83 @@
 </div>
 
 <div>
-    <form [formGroup] = "register_form">
+    <form [formGroup]="register_form">
         <tr>
             <td>
-                <input type = "text" placeholder = "Name" [(ngModel)] = "name" formControlName = "name"/>
+                <input type="text" placeholder="Name" [(ngModel)]="name" formControlName="name" />
             </td>
         </tr>
 
         <tr>
             <td>
-                <input type = "text" placeholder = "Surname" [(ngModel)] = "surname" formControlName = "surname"/>
-            </td>
-        </tr>
-        
-        <tr>
-            <td>
-                <input type = "text" placeholder = "Gender" [(ngModel)] = "gender" formControlName = "gender"/>
+                <input type="text" placeholder="Surname" [(ngModel)]="surname" formControlName="surname" />
             </td>
         </tr>
 
         <tr>
             <td>
-                <input type = "text" placeholder = "Age" [(ngModel)] = "age" formControlName = "age"/>
+                <input type="text" placeholder="Gender" [(ngModel)]="gender" formControlName="gender" />
             </td>
         </tr>
 
         <tr>
             <td>
-                <input type = "text" placeholder = "Email" [(ngModel)] = "email" formControlName = "email"/>
+                <input type="text" placeholder="Age" [(ngModel)]="age" formControlName="age" />
             </td>
         </tr>
 
         <tr>
             <td>
-                <input type = "text" placeholder = "Contact" [(ngModel)] = "contact" formControlName = "contact"/>
+                <input type="text" placeholder="Email" [(ngModel)]="email" formControlName="email" />
             </td>
         </tr>
 
         <tr>
             <td>
-                <input type = "text" placeholder = "Address" [(ngModel)] = "address" formControlName = "address"/>
+                <input type="text" placeholder="Contact" [(ngModel)]="contact" formControlName="contact" />
             </td>
         </tr>
 
         <tr>
             <td>
-                <input type = "text" placeholder = "Qualification" [(ngModel)] = "qualification" formControlName = "qualification"/>
+                <input type="text" placeholder="Address" [(ngModel)]="address" formControlName="address" />
             </td>
         </tr>
 
         <tr>
             <td>
-                <input type = "text" placeholder = "Price" [(ngModel)] = "price" formControlName = "price"/>
-            </td>
-        </tr>
-        
-        <tr>
-            <td>
-                <input type = "text" placeholder = "Category" [(ngModel)] = "category" formControlName = "category"/>
+                <input type="text" placeholder="Qualification" [(ngModel)]="qualification" formControlName="qualification" />
             </td>
         </tr>
 
         <tr>
             <td>
-                <input type = "password" placeholder = "Password" [(ngModel)] = "password" formControlName = "password"/>
+                <input type="text" placeholder="Price" [(ngModel)]="price" formControlName="price" />
             </td>
         </tr>
 
         <tr>
             <td>
-                <input type = "password" placeholder = "Confirm Password" [(ngModel)] = "confirm_password" formControlName = "confirm_password"/>
+                <input type="text" placeholder="Category" [(ngModel)]="category" formControlName="category" />
             </td>
         </tr>
 
-        <tr><button class = "create_account" (click) = "CreateAccount()">Create Account</button></tr>
+        <tr>
+            <td>
+                <input type="password" placeholder="Password" [(ngModel)]="password" formControlName="password" />
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <input type="password" placeholder="Confirm Password" [(ngModel)]="confirm_password" formControlName="confirm_password" />
+            </td>
+        </tr>
+
+        <tr><button class="create_account" (click)="CreateAccount()">Create Account</button></tr>
     </form>
 </div>
 
+<section>
+    <canvas id="myChart"></canvas>
+</section>
