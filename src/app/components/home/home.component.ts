@@ -4,8 +4,13 @@ import { MapboxService } from '../../Service/mapbox.service';
 import mapboxgl from 'mapbox-gl';
 import * as firebase from 'firebase';
 import { firestore } from 'firebase';
+import MapboxGeocoder from '@mapbox/mapbox-gl-geocoder';
 import { FormGroup,FormBuilder,Validators } from '@angular/forms'
 import { ExitProgramService } from 'src/app/Service/exit-program.service';
+import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
+import { JsonPipe } from '@angular/common';
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -16,12 +21,11 @@ export class HomeComponent implements OnInit {
   posLat : number;
   pos : any = [];
   coords : any = [];
-  GraduateArray = [];
-  working = 0;
-  not_working = 0;
-  total_grads = 0;
-  GraphData = [];
+  latlng;
+  geocoder: any;
 
+  temp;
+  temp1;
   name;
   surname;
   gender;
@@ -41,7 +45,9 @@ export class HomeComponent implements OnInit {
   constructor(private authService : AuthGuardService,
               private MapboxService : MapboxService,
               public formGroup:FormBuilder,
-              public exitProgramService: ExitProgramService ) { 
+              public exitProgramService: ExitProgramService,
+              private route :Router,
+              private http: HttpClient ) { 
     if (navigator.geolocation) {
       // 🗺️ yep, we can proceed!
       console.log("success geolocation")
@@ -59,25 +65,29 @@ export class HomeComponent implements OnInit {
       console.log("fail geolocation")
     }
 
-    var db = firebase.firestore();
-    db.collection("Graduate/").get().then((querySnapshot) => {
-      querySnapshot.forEach((doc) => {
-        // console.log(doc.data().Address);
-        this.GraduateArray.push(doc.data());
-        this.total_grads = this.total_grads + 1;
-        if(doc.data().Status == true){
-          this.working = this.working + 1;
-        }else{
-          this.not_working = this.not_working + 1;
-        }
+    
+    
 
-        this.GraphData.push({
-          Working: this.working,
-          NotWorking: this.not_working,
-          TotalGrads: this.total_grads
-        })
-        });
-    });
+
+
+    // db.collection("category/").get().then((querySnapshot) => {
+    //   querySnapshot.forEach((doc) => {
+    //     // console.log(doc.data().Address);
+    //     this.GraduateArray.push(doc.data());
+    //     this.total_grads = this.total_grads + 1;
+    //     if(doc.data().Status == true){
+    //       this.working = this.working + 1;
+    //     }else{
+    //       this.not_working = this.not_working + 1;
+    //     }
+
+    //     this.GraphData.push({
+    //       Working: this.working,
+    //       NotWorking: this.not_working,
+    //       TotalGrads: this.total_grads
+    //     })
+    //     });
+    // });
 
     this.register_form = formGroup.group({
       name: ["",[Validators.required]],
@@ -98,11 +108,9 @@ export class HomeComponent implements OnInit {
 
 try(){
   console.log(this.pos); 
+  this.route.navigateByUrl('register')
 }
-  
-  logout(){
-    this.authService.signOut();
-    }
+
   
   ngOnInit() {
 
@@ -148,31 +156,63 @@ try(){
     
     var coordinates = document.getElementById('coordinates');
     mapboxgl.accessToken = 'pk.eyJ1IjoibmVvLXB1bGUiLCJhIjoiY2p4cTF6Z2huMGx6czNtbnY2aWdwdWU5NiJ9._Dj2fBUZgCoryf1ehZTweQ';
-    // var map = new mapboxgl.Map({
+    var map = new mapboxgl.Map({
       
-    // // container: 'map', // container id
-    // style: 'mapbox://styles/mapbox/streets-v11', // stylesheet location
-    // center: [28.2631339,-25.7515526],  // starting position [lng, lat]
-    // zoom: 9 // starting zoom
+    container: 'map', // container id
+    style: 'mapbox://styles/mapbox/streets-v11', // stylesheet location
+    center: [28.2631339,-25.7515526],  // starting position [lng, lat]
+    zoom: 9 // starting zoom
     
-    // });
+    });
 
-    var marker = new mapboxgl.Marker({
-      draggable: true
-      })
-      .setLngLat([28.2631339,-25.7515526]);
-      // .addTo(map);
+    this.geocoder = new MapboxGeocoder({ // Initialize the geocoder
+      accessToken: mapboxgl.accessToken, // Set the access token
+      mapboxgl: mapboxgl, // Set the mapbox-gl instance
+      marker: {
+        color: 'orange',
+        draggable : true,
+        
+      },
+      
+      placeholder: 'Search for places ', // Placeholder text for the search bar
+      // Coordinates of UC Berkeley
+    });
+
+
+    this.latlng =  map.addControl(this.geocoder);
+    
+    var marker;
+    // var marker = new mapboxgl.Marker({
+    //   draggable: true
+    //   })
+    //   .setLngLat([28.2631339,-25.7515526])
+    //   .addTo(map);
        
       function onDragEnd() {
         var lngLat = marker.getLngLat();
-        this.pos = lngLat.lng,lngLat.lat;
+        this.temp = lngLat.lng;
+        this.temp1 = lngLat.lat;
        
         coordinates.style.display = 'block';
+        console.log(lngLat.lng);
+        console.log(lngLat.lat);
         console.log(this.pos);
        
         }
+
+      map.on('load', (event) =>{
+        map.addSource('firebase', {
+          type : JsonPipe,
+          data : {
+            type : 'FeatureCollection',
+            features : []
+          }
+        });
+
+        // this.source = 
+      })
         
-        marker.on('dragend', onDragEnd);
+        // marker.on('dragend', onDragEnd);
         this.MapboxService.run(this.pos);
         
         // var Chart = require('chart.js');
@@ -215,6 +255,27 @@ try(){
       // });
     }
 
+    gone()
+    {
+      console.log(this.latlng )
+      this.pos[0] = this.latlng._controls[2].mapMarker._lngLat.lng;
+    this.pos[1] = this.latlng._controls[2].mapMarker._lngLat.lat;
+      // console.log(this.latlng._controls[2].mapMarker._lngLat )
+      console.log(this.temp  + " lngitude ..")
+      console.log(this.temp1  + " latitude")
+      console.log( this.pos)
+      
+    }
+    
+    loc(){
+  this.MapboxService.geoloc(this.pos);
+  // .subscribe((data) =>{
+  //                 console.log(data)
+  //               });
+          
+   }
+    
+  
     CreateAccount() {
 
       // this.Key = this.exitProgramService.generateKey();
@@ -235,6 +296,8 @@ try(){
         console.log(data);
       })
     }
+
+
   }
 
 

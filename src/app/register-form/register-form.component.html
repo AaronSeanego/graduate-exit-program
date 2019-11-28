@@ -40,10 +40,10 @@
     </form> -->
     <p>register works!</p>
 
-    <input type="text" (click)="search($event)" [value]="selectedAddress" />
+    <!-- <input type="text" (click)="search($event)"  />
 
 <div class="search">
-    <ul lines="none" *ngIf="addresses.length > 0" color="light" >
+    <ul color="light" >
 
         <div *ngFor="let address of addresses ; let i=index"style="background:  lightblue; " (click)="onSelect(address, i)" >
 
@@ -53,11 +53,13 @@
 
     </ul>
 
-</div>
+</div> -->
+
+<input ngx-google-places-autocomplete [options]='options' #placesRef="ngx-places" (onAddressChange)="handleAddressChange($event)"/>
 
 <button (click)="try()">home</button>
 
-<div>
+<!-- <div>
     <form [formGroup] = "register_form">
         <tr>
             <td>
@@ -127,4 +129,4 @@
 ​
         <tr><button class = "create_account" (click) = "CreateAccount()">Create Account</button></tr>
     </form>
-</div>
+</div> -->

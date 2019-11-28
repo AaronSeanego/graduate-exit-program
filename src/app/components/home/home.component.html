@@ -1,8 +1,11 @@
-<p>home works!</p>
-<button [routerLink]="['/register']">log Out</button>
-<!-- <div  #map id='map'></div>
-<pre id='coordinates' class='coordinates'></pre> -->
-<button (click)="try()">try</button>
+
+
+<div  #map id='map'></div>
+<pre id='coordinates' class='coordinates'></pre>
+<button (click)="try()">register page</button>
+
+<button (click)="loc()">get address</button>
+<button (click)="gone()">console coords</button>
 
 <section style="float: left;">
     <canvas id="myChart" width="400" height="400"></canvas>
@@ -10,7 +13,7 @@
     <!-- <canvas id = "Pie" width="400" height="400"></canvas> -->
 </section>
 
-<div>
+<!-- <div>
     <table>
         <th>Name</th>
         <th>Surname</th>
@@ -45,6 +48,31 @@
 
         <tr>
             <td>{{total_grads}}</td>
+        </tr>
+    <tr>
+        <td class="dropdown" >
+                {{grads.course}}
+                </td>
+              
+            </tr>
+        <!-- <div>
+            Pick your favorite hero
+            (<label><input type="checkbox" checked (change)="showSad = !showSad">show sad</label>)
+          </div> -->
+       
+
+         <!-- <select [(ngModel)]="hero">
+             <ng-container *ngFor="let h of heroes">
+              <ng-container *ngIf="showSad || h.emotion !== 'sad'">
+                <option [ngValue]="h">{{h.name}} ({{h.emotion}})</option>
+              </ng-container>
+            </ng-container> 
+        </select>   --
+        <tr>
+        <td class="dropdown"  *ngFor="let cat of categories">
+            {{cat.course}}
+            </td>
+          
         </tr>
     </table>
 </div>
@@ -125,7 +153,7 @@
 
         <tr><button class="create_account" (click)="CreateAccount()">Create Account</button></tr>
     </form>
-</div>
+</div> -->
 
 <section>
     <canvas id="myChart"></canvas>
