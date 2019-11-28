@@ -13,7 +13,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
   styleUrls: ['./register-form.component.scss']
 })
 export class RegisterFormComponent implements OnInit {
-
+  passwo;
   name;
   surname;
   email;
@@ -155,7 +155,8 @@ try(){
           this.qualification,
           this.Status,
           this.price,
-          this.password
+          this.password,
+          this.passwo,
         ).then((data) => {
           console.log(data);
         })

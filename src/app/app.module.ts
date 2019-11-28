@@ -13,6 +13,9 @@ import { HomeComponent } from './components/home/home.component';
 import { AngularFirestoreModule  } from '@angular/fire/firestore';
 import { AngularFireModule } from '@angular/fire';
 import {HttpClientModule} from '@angular/common/http'
+import { MatProgressBarModule,MatTableModule,MatTableDataSource } from '@angular/material';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 var firebaseConfig = {
   apiKey: "AIzaSyDkju7iNCsC27HKxBjDOkNGEWUXY-Pt9eo",
   authDomain: "exitprogramcms.firebaseapp.com",
@@ -43,7 +46,10 @@ firebase.analytics();
     HttpClientModule,
     ReactiveFormsModule,
     AngularFireAuthModule,
+    MatProgressBarModule,
+    MatTableModule,
     AngularFireModule.initializeApp(firebaseConfig),
+    BrowserAnimationsModule,
   ],
   providers: [
     ExitProgramService

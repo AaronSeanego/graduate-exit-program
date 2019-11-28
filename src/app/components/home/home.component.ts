@@ -6,6 +6,7 @@ import * as firebase from 'firebase';
 import { firestore } from 'firebase';
 import { FormGroup,FormBuilder,Validators } from '@angular/forms'
 import { ExitProgramService } from 'src/app/Service/exit-program.service';
+import { Chart } from 'chart.js';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -16,11 +17,24 @@ export class HomeComponent implements OnInit {
   posLat : number;
   pos : any = [];
   coords : any = [];
+
   GraduateArray = [];
   working = 0;
   not_working = 0;
   total_grads = 0;
   GraphData = [];
+
+  cWorking = 0;
+  cNotWorking = 0;
+  cTotal = 0;
+
+  egWorking = 0;
+  egNotWorking = 0;
+  egTotal = 0;
+
+  pWorking = 0;
+  pNotWorking = 0;
+  pTotal = 0;
 
   name;
   surname;
@@ -71,6 +85,36 @@ export class HomeComponent implements OnInit {
           this.not_working = this.not_working + 1;
         }
 
+        if((doc.data().Category == "Carpentry") && (doc.data().Status == true)){
+          this.cWorking = this.cWorking + 1;
+        }else if((doc.data().Category == "Carpentry") && (doc.data().Status == false)){
+          this.cNotWorking = this.cNotWorking + 1;
+        }
+
+        if(doc.data().Category == "Carpentry"){
+          this.cTotal = this.cTotal + 1;
+        }
+
+        if((doc.data().Category == "Electrical Engineering") && (doc.data().Status == true)){
+          this.egWorking = this.egWorking + 1;
+        }else if((doc.data().Category = "Eletrical Engineering") && (doc.data().Status == false)){
+          this.egNotWorking = this.egNotWorking + 1;
+        }
+
+        if(doc.data().Category == "Electrical Engineering"){
+          this.cTotal = this.cTotal + 1;
+        }
+
+        if((doc.data().Category == "Plumbing") && (doc.data().Status == true)){
+          this.pWorking = this.pWorking + 1;
+        }else if((doc.data().Category == "Plumbing") && (doc.data().Status == false)) {
+          this.pNotWorking = this.pNotWorking + 1;
+        }
+
+        if(doc.data().Category == "Plumbing"){
+          this.pTotal = this.pTotal + 1;
+        }
+
         this.GraphData.push({
           Working: this.working,
           NotWorking: this.not_working,
@@ -106,6 +150,46 @@ try(){
   
   ngOnInit() {
 
+    // var MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+		// var color = Chart.helpers.color;
+		var horizontalBarChartData = {
+			labels: ['Carpentry'],
+			datasets: [{
+				label: 'Dataset 1',
+				// backgroundColor: color(window.chartColors.red).alpha(0.5).rgbString(),
+				// borderColor: window.chartColors.red,
+				borderWidth: 1,
+				data: this.cWorking
+			}]
+
+		};
+
+		window.onload = function() {
+
+			var myChart = new Chart('myChart', {
+				type: 'horizontalBar',
+				data: horizontalBarChartData,
+				options: {
+					// Elements options apply to all of the options unless overridden in a dataset
+					// In this case, we are setting the border of each horizontal bar to be 2px wide
+					elements: {
+						rectangle: {
+							borderWidth: 2,
+						}
+					},
+					responsive: true,
+					legend: {
+						position: 'right',
+					},
+					title: {
+						display: true,
+						text: 'Chart.js Horizontal Bar Chart'
+					}
+				}
+			});
+
+    };
+    
     console.log(this.coords)
     
     var coordinates = document.getElementById('coordinates');
@@ -136,45 +220,43 @@ try(){
         
         marker.on('dragend', onDragEnd);
         this.MapboxService.run(this.pos);
-        
-        // var Chart = require('chart.js');
 
-      //   var myChart = new Chart('myChart', {
-      //     type: 'line',
-      //     data: {
-      //         labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-      //         datasets: [{
-      //             label: '# of Votes',
-      //             data: [12, 19, 3, 5, 2, 3],
-      //             backgroundColor: [
-      //                 'rgba(255, 99, 132, 0.2)',
-      //                 'rgba(54, 162, 235, 0.2)',
-      //                 'rgba(255, 206, 86, 0.2)',
-      //                 'rgba(75, 192, 192, 0.2)',
-      //                 'rgba(153, 102, 255, 0.2)',
-      //                 'rgba(255, 159, 64, 0.2)'
-      //             ],
-      //             borderColor: [
-      //                 'rgba(255, 99, 132, 1)',
-      //                 'rgba(54, 162, 235, 1)',
-      //                 'rgba(255, 206, 86, 1)',
-      //                 'rgba(75, 192, 192, 1)',
-      //                 'rgba(153, 102, 255, 1)',
-      //                 'rgba(255, 159, 64, 1)'
-      //             ],
-      //             borderWidth: 1
-      //         }]
-      //     },
-      //     options: {
-      //         scales: {
-      //             yAxes: [{
-      //                 ticks: {
-      //                     beginAtZero: true
-      //                 }
-      //             }]
-      //         }
-      //     }
-      // });
+        var myChart = new Chart('myChart', {
+          type: 'line',
+          data: {
+              labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+              datasets: [{
+                  label: '# of Votes',
+                  data: [12, 19, 3, 5, 2, 3],
+                  backgroundColor: [
+                      'rgba(255, 99, 132, 0.2)',
+                      'rgba(54, 162, 235, 0.2)',
+                      'rgba(255, 206, 86, 0.2)',
+                      'rgba(75, 192, 192, 0.2)',
+                      'rgba(153, 102, 255, 0.2)',
+                      'rgba(255, 159, 64, 0.2)'
+                  ],
+                  borderColor: [
+                      'rgba(255, 99, 132, 1)',
+                      'rgba(54, 162, 235, 1)',
+                      'rgba(255, 206, 86, 1)',
+                      'rgba(75, 192, 192, 1)',
+                      'rgba(153, 102, 255, 1)',
+                      'rgba(255, 159, 64, 1)'
+                  ],
+                  borderWidth: 1
+              }]
+          },
+          options: {
+              scales: {
+                  yAxes: [{
+                      ticks: {
+                          beginAtZero: true
+                      }
+                  }]
+              }
+          }
+      });
     }
 
     CreateAccount() {
