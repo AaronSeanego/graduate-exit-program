@@ -7,10 +7,12 @@ import { firestore } from 'firebase';
 import MapboxGeocoder from '@mapbox/mapbox-gl-geocoder';
 import { FormGroup,FormBuilder,Validators } from '@angular/forms'
 import { ExitProgramService } from 'src/app/Service/exit-program.service';
+import { Chart } from 'chart.js';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { JsonPipe } from '@angular/common';
-import { Chart } from 'chart.js';
+
+
 
 @Component({
   selector: 'app-home',
@@ -22,6 +24,25 @@ export class HomeComponent implements OnInit {
   posLat : number;
   pos : any = [];
   coords : any = [];
+
+  GraduateArray = [];
+  working = 0;
+  not_working = 0;
+  total_grads = 0;
+  GraphData = [];
+
+  cWorking = 0;
+  cNotWorking = 0;
+  cTotal = 0;
+
+  egWorking = 0;
+  egNotWorking = 0;
+  egTotal = 0;
+
+  pWorking = 0;
+  pNotWorking = 0;
+  pTotal = 0;
+
   latlng;
   geocoder: any;
 
@@ -43,6 +64,9 @@ export class HomeComponent implements OnInit {
   
   register_form:FormGroup;
   Key;
+
+  db = firebase.firestore();
+  pieChart:any [];
   constructor(private authService : AuthGuardService,
               private MapboxService : MapboxService,
               public formGroup:FormBuilder,
@@ -66,29 +90,7 @@ export class HomeComponent implements OnInit {
       console.log("fail geolocation")
     }
 
-    
-    
-
-
-
-    // db.collection("category/").get().then((querySnapshot) => {
-    //   querySnapshot.forEach((doc) => {
-    //     // console.log(doc.data().Address);
-    //     this.GraduateArray.push(doc.data());
-    //     this.total_grads = this.total_grads + 1;
-    //     if(doc.data().Status == true){
-    //       this.working = this.working + 1;
-    //     }else{
-    //       this.not_working = this.not_working + 1;
-    //     }
-
-    //     this.GraphData.push({
-    //       Working: this.working,
-    //       NotWorking: this.not_working,
-    //       TotalGrads: this.total_grads
-    //     })
-    //     });
-    // });
+   
 
     this.register_form = formGroup.group({
       name: ["",[Validators.required]],
@@ -152,6 +154,129 @@ try(){
               }
           }
       });
+    // var randomScalingFactor = function() {
+		// 	return Math.round(Math.random() * 100);
+		// };
+
+    this.db.collection("Graduate/").get().then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        // console.log(doc.data().Address);
+        this.GraduateArray.push(doc.data());
+        this.total_grads = this.total_grads + 1;
+        if(doc.data().Status == true){
+          this.working = this.working + 1;
+        }else{
+          this.not_working = this.not_working + 1;
+        }
+
+        if((doc.data().Category == "Carpentry") && (doc.data().Status == true)){
+          this.cWorking = this.cWorking + 1;
+        }else if((doc.data().Category == "Carpentry") && (doc.data().Status == false)){
+          this.cNotWorking = this.cNotWorking + 1;
+        }
+
+        if(doc.data().Category == "Carpentry"){
+          this.cTotal = this.cTotal + 1;
+        }
+
+        if((doc.data().Category == "Electrical Engineering") && (doc.data().Status == true)){
+          this.egWorking = this.egWorking + 1;
+        }else if((doc.data().Category = "Eletrical Engineering") && (doc.data().Status == false)){
+          this.egNotWorking = this.egNotWorking + 1;
+        }
+
+        if(doc.data().Category == "Electrical Engineering"){
+          this.cTotal = this.cTotal + 1;
+        }
+
+        if((doc.data().Category == "Plumbing") && (doc.data().Status == true)){
+          this.pWorking = this.pWorking + 23;
+        }else if((doc.data().Category == "Plumbing") && (doc.data().Status == false)) {
+          this.pNotWorking = this.pNotWorking + 43;
+        }
+
+        if(doc.data().Category == "Plumbing"){
+          this.pTotal = this.pTotal + 1;
+        }
+        
+
+        this.GraphData.push({
+          Working: this.working,
+          NotWorking: this.not_working,
+          TotalGrads: this.total_grads
+        })
+
+        });
+
+        var myChart = new Chart('Pie01', {
+          type: 'pie',
+          data: {
+            datasets: [{
+              // label: 'Number of Users Registered Monthly',
+              data: [43, 65],
+              backgroundColor: [
+                '#E4A9A8',
+                '#26C6DA',
+                'yellow'
+              ],
+              label: 'Dataset 1'
+            }],
+            labels: [
+              'Working',
+              'Not Working',
+            ]
+          },
+          options: {
+            responsive: true
+          }
+        });
+
+        var myChart = new Chart('Pie02', {
+          type: 'pie',
+          data: {
+            datasets: [{
+              // label: 'Number of Users Registered Monthly',
+              data: [41, 23],
+              backgroundColor: [
+                '#E4A9A8',
+                '#26C6DA',
+                'yellow'
+              ],
+              label: 'Dataset 1'
+            }],
+            labels: [
+              'Working',
+              'Not Working',
+            ]
+          },
+          options: {
+            responsive: true
+          }
+        });
+
+        var myChart = new Chart('Pie03', {
+          type: 'pie',
+          data: {
+            datasets: [{
+              // label: 'Number of Users Registered Monthly',
+              data: [5, 20],
+              backgroundColor: [
+                '#E4A9A8',
+                '#26C6DA',
+                'yellow'
+              ],
+              label: 'Dataset 1'
+            }],
+            labels: [
+              'Working',
+              'Not Working',
+            ]
+          },
+          options: {
+            responsive: true
+          }
+        });
+    });
 
     console.log(this.coords)
     
@@ -215,45 +340,43 @@ try(){
         
         // marker.on('dragend', onDragEnd);
         this.MapboxService.run(this.pos);
-        
-        // var Chart = require('chart.js');
 
-      //   var myChart = new Chart('myChart', {
-      //     type: 'line',
-      //     data: {
-      //         labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-      //         datasets: [{
-      //             label: '# of Votes',
-      //             data: [12, 19, 3, 5, 2, 3],
-      //             backgroundColor: [
-      //                 'rgba(255, 99, 132, 0.2)',
-      //                 'rgba(54, 162, 235, 0.2)',
-      //                 'rgba(255, 206, 86, 0.2)',
-      //                 'rgba(75, 192, 192, 0.2)',
-      //                 'rgba(153, 102, 255, 0.2)',
-      //                 'rgba(255, 159, 64, 0.2)'
-      //             ],
-      //             borderColor: [
-      //                 'rgba(255, 99, 132, 1)',
-      //                 'rgba(54, 162, 235, 1)',
-      //                 'rgba(255, 206, 86, 1)',
-      //                 'rgba(75, 192, 192, 1)',
-      //                 'rgba(153, 102, 255, 1)',
-      //                 'rgba(255, 159, 64, 1)'
-      //             ],
-      //             borderWidth: 1
-      //         }]
-      //     },
-      //     options: {
-      //         scales: {
-      //             yAxes: [{
-      //                 ticks: {
-      //                     beginAtZero: true
-      //                 }
-      //             }]
-      //         }
-      //     }
-      // });
+        var myChart = new Chart('myChart', {
+          type: 'line',
+          data: {
+              labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+              datasets: [{
+                  label: '# of Votes',
+                  data: [12, 19, 3, 5, 2, 3],
+                  backgroundColor: [
+                      'rgba(255, 99, 132, 0.2)',
+                      'rgba(54, 162, 235, 0.2)',
+                      'rgba(255, 206, 86, 0.2)',
+                      'rgba(75, 192, 192, 0.2)',
+                      'rgba(153, 102, 255, 0.2)',
+                      'rgba(255, 159, 64, 0.2)'
+                  ],
+                  borderColor: [
+                      'rgba(255, 99, 132, 1)',
+                      'rgba(54, 162, 235, 1)',
+                      'rgba(255, 206, 86, 1)',
+                      'rgba(75, 192, 192, 1)',
+                      'rgba(153, 102, 255, 1)',
+                      'rgba(255, 159, 64, 1)'
+                  ],
+                  borderWidth: 1
+              }]
+          },
+          options: {
+              scales: {
+                  yAxes: [{
+                      ticks: {
+                          beginAtZero: true
+                      }
+                  }]
+              }
+          }
+      });
     }
 
     gone()

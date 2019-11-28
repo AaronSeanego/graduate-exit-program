@@ -17,14 +17,24 @@
 </div>
 
 
-<section class="charts">
-    <canvas id="myChart"></canvas>
+<section style="float: left;">
+    <canvas id="myChart" width="100" height="100"></canvas>
 
-    <!-- <canvas id="Pie" width="400" height="400"></canvas> -->
+    <div style="margin-bottom: 40px;">
+        <label>Carpenters</label><canvas id="Pie01" width="100" height="100"></canvas><label style="float: right;">{{cTotal}}</label>
+    </div>
+
+    <div style="margin-bottom: 40px;">
+        <label>Electrical Engineering</label><canvas id="Pie02" width="100" height="100"></canvas><label style="float: right;">{{egTotal}}</label>
+    </div>
+
+    <div style="margin-bottom: 40px;">
+        <label>Plumbing</label><canvas id="Pie03" width="140" height="140"></canvas><label style="float: right;">{{pTotal}}</label>
+    </div>
 </section>
 
 
-<!-- <div>
+<div>
     <table>
         <th>Name</th>
         <th>Surname</th>
@@ -50,29 +60,71 @@
             <td>{{grads.Price}}</td>
         </tr>
         <tr>
-            <td>{{working}}</td>
+            <td>Working: {{working}}</td>
         </tr>
 
         <tr>
-            <td>{{not_working}}</td>
+            <td>Not working: {{not_working}}</td>
         </tr>
 
         <tr>
-            <td>{{total_grads}}</td>
+            <td>Total: {{total_grads}}</td>
         </tr>
-    <tr>
+
+        <tr>------------------------------</tr>
+
+        <tr>
+            <td>Carpenters working: {{cWorking}}</td>
+        </tr>
+
+        <tr>
+            <td>Carpenters not working: {{cNotWorking}}</td>
+        </tr>
+
+        <tr>
+            <td>Total Carpenters: {{cTotal}}</td>
+        </tr>
+
+        <tr>-------------------------------</tr>
+
+        <tr>
+            <td>Electrical engineers working: {{egWorking}}</td>
+        </tr>
+
+        <tr>
+            <td>Electrical engineers not working: {{egNotWorking}}</td>
+        </tr>
+
+        <tr>
+            <td>Electrical engineers: {{egTotal}}</td>
+        </tr>
+
+        <tr>----------------------------------</tr>
+
+        <tr>
+            <td>Plumbers working: {{pWorking}}</td>
+        </tr>
+
+        <tr>
+            <td>Plumbing not working: {{pNotWorking}}</td>
+        </tr>
+
+        <tr>
+            <td>Plumbers: {{pTotal}}</td>
+        </tr>
+        <!-- <tr>
         <td class="dropdown" >
                 {{grads.course}}
                 </td>
               
-            </tr>
+            </tr> -->
         <!-- <div>
             Pick your favorite hero
             (<label><input type="checkbox" checked (change)="showSad = !showSad">show sad</label>)
-          </div> -->
+          </div>
+       
 
-
-<!-- <select [(ngModel)]="hero">
+         <select [(ngModel)]="hero">
              <ng-container *ngFor="let h of heroes">
               <ng-container *ngIf="showSad || h.emotion !== 'sad'">
                 <option [ngValue]="h">{{h.name}} ({{h.emotion}})</option>
@@ -84,12 +136,14 @@
             {{cat.course}}
             </td>
           
-        </tr>
+        </tr> -->
     </table>
+
+
 </div>
 
-<div>
-    <form [formGroup]="register_form">
+<!-- <div>
+    <form [formGroup] = "register_form">
         <tr>
             <td>
                 <input type="text" placeholder="Name" [(ngModel)]="name" formControlName="name" />
@@ -165,7 +219,4 @@
         <tr><button class="create_account" (click)="CreateAccount()">Create Account</button></tr>
     </form>
 </div> -->
-
-<!-- <section>
-    <canvas id="myChart"></canvas>
-</section> -->
+<!-- <canvas id="pieChart" width="700" height="370"></canvas> -->

@@ -58,7 +58,7 @@
 <input ngx-google-places-autocomplete [options]='options' #placesRef="ngx-places" (onAddressChange)="handleAddressChange($event)"/>
 
 <button (click)="try()">home</button>
-
+<br>
 <!-- <div>
     <form [formGroup] = "register_form">
         <tr>
@@ -130,3 +130,48 @@
         <tr><button class = "create_account" (click) = "CreateAccount()">Create Account</button></tr>
     </form>
 </div> -->
+<div class="form">
+<mat-card>
+        <mat-form-field>
+            <mat-label>Name</mat-label>
+            <input matInput required [(ngModel)]="name" >
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+            <mat-label>Surname</mat-label>
+            <input matInput required [(ngModel)]="surname" >
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+                <mat-label>Age</mat-label>
+                <input matInput required [(ngModel)]="age" >
+            </mat-form-field>
+            
+        <br>
+        <label>Gender: </label>
+      <mat-radio-group formControlName="gender">
+        <mat-radio-button value="male">Male</mat-radio-button>
+        <mat-radio-button value="female">Female</mat-radio-button>
+      </mat-radio-group>
+      <br>
+      <br>
+      <mat-form-field>
+            <mat-label>Nationality</mat-label>
+            <select matNativeControl required>
+              <option value="black">Black</option>
+              <option value="white">White</option>
+              <option value="coloured">Coloured</option>
+              <option value="indian">Indian</option>
+            </select>
+          </mat-form-field>
+          <br> 
+        <mat-form-field>
+                <mat-label>Contact Number</mat-label>
+                <input matInput required [(ngModel)]="contactnumber" >
+            </mat-form-field>
+
+    </mat-card>
+        
+
+    </div>
+    
