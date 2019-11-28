@@ -20,7 +20,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {HttpClientModule} from '@angular/common/http'
 import { GooglePlaceModule } from "ngx-google-places-autocomplete";
 import { ViewGradsComponent } from './components/view-grads/view-grads.component';
-import { MatProgressBarModule,MatTableModule } from '@angular/material';
+import { MatProgressBarModule,MatTableModule,MatCardModule } from '@angular/material';
 
 
 var firebaseConfig = {
@@ -63,7 +63,8 @@ firebase.analytics();
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
-    MatIconModule
+    MatIconModule,
+    MatCardModule
   ],
   providers: [
     ExitProgramService

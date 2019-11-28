@@ -8,12 +8,23 @@
 <button (click)="gone()">console coords</button>
 
 <section style = "float: left;">
-    <canvas id = "myChart" width="400" height="400"></canvas>
+    <canvas id = "myChart" width="100" height="100"></canvas>
 
-    <!-- <canvas id = "Pie" width="400" height="400"></canvas> -->
+    <div style = "margin-bottom: 40px;">
+        <label>Carpenters</label><canvas id = "Pie01" width="100" height="100"></canvas><label style = "float: right;">{{cTotal}}</label>
+    </div>
+
+    <div style = "margin-bottom: 40px;">
+        <label>Electrical Engineering</label><canvas id = "Pie02" width="100" height="100"></canvas><label style = "float: right;">{{egTotal}}</label>
+    </div>
+    
+    <div style = "margin-bottom: 40px;">
+        <label>Plumbing</label><canvas id = "Pie03" width="140" height="140"></canvas><label style = "float: right;">{{pTotal}}</label>
+    </div>
 </section>
 
-<!-- <div>
+
+<div>
     <table>
         <th>Name</th>
         <th>Surname</th>
@@ -91,19 +102,19 @@
         <tr>
             <td>Plumbers: {{pTotal}}</td>
         </tr>
-    <tr>
+    <!-- <tr>
         <td class="dropdown" >
                 {{grads.course}}
                 </td>
               
-            </tr>
+            </tr> -->
         <!-- <div>
             Pick your favorite hero
             (<label><input type="checkbox" checked (change)="showSad = !showSad">show sad</label>)
-          </div> -->
+          </div>
        
 
-         <!-- <select [(ngModel)]="hero">
+         <select [(ngModel)]="hero">
              <ng-container *ngFor="let h of heroes">
               <ng-container *ngIf="showSad || h.emotion !== 'sad'">
                 <option [ngValue]="h">{{h.name}} ({{h.emotion}})</option>
@@ -115,13 +126,13 @@
             {{cat.course}}
             </td>
           
-        </tr>
+        </tr> -->
     </table>
 
-    <!-- <mat-progress-bar mode="determinate" [value]="progress"></mat-progress-bar> -->
+   
 </div>
 
-<div>
+<!-- <div>
     <form [formGroup] = "register_form">
         <tr>
             <td>
@@ -198,6 +209,4 @@
         <tr><button class = "create_account" (click) = "CreateAccount()">Create Account</button></tr>
     </form>
 </div> -->
-
-<div>
-</div>
+<!-- <canvas id="pieChart" width="700" height="370"></canvas> -->

@@ -159,8 +159,7 @@ try(){
           this.qualification,
           this.Status,
           this.price,
-          this.password,
-          this.passwo,
+          this.password
         ).then((data) => {
           console.log(data);
         })

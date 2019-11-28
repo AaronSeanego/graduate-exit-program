@@ -64,6 +64,7 @@ export class HomeComponent implements OnInit {
   Key;
 
   db = firebase.firestore();
+  pieChart = [];
   constructor(private authService : AuthGuardService,
               private MapboxService : MapboxService,
               public formGroup:FormBuilder,
@@ -87,49 +88,38 @@ export class HomeComponent implements OnInit {
       console.log("fail geolocation")
     }
 
-    
-    
+   
 
+    this.register_form = formGroup.group({
+      name: ["",[Validators.required]],
+      surname: ["",[Validators.required]],
+      gender: ["",[Validators.required]],
+      age: ["",[Validators.required]],
+      email: ["",[Validators.required]],
+      contact: ["",[Validators.required]],
+      address: ["",[Validators.required]],
+      qualification: ["",[Validators.required]],
+      category: ["",[Validators.required]],
+      price: ["",[Validators.required]],
+      password: ["",[Validators.required]],
+      confirm_password: ["",[Validators.required]],
+      status: ["",[Validators.required]]
+    })
+  }
 
-    //     if((doc.data().Category == "Carpentry") && (doc.data().Status == true)){
-    //       this.cWorking = this.cWorking + 1;
-    //     }else if((doc.data().Category == "Carpentry") && (doc.data().Status == false)){
-    //       this.cNotWorking = this.cNotWorking + 1;
-    //     }
+try(){
+  console.log(this.pos); 
+  this.route.navigateByUrl('register')
+}
 
-    //     if(doc.data().Category == "Carpentry"){
-    //       this.cTotal = this.cTotal + 1;
-    //     }
+  
+  ngOnInit() {
 
-    //     if((doc.data().Category == "Electrical Engineering") && (doc.data().Status == true)){
-    //       this.egWorking = this.egWorking + 1;
-    //     }else if((doc.data().Category = "Eletrical Engineering") && (doc.data().Status == false)){
-    //       this.egNotWorking = this.egNotWorking + 1;
-    //     }
+    // var randomScalingFactor = function() {
+		// 	return Math.round(Math.random() * 100);
+		// };
 
-    //     if(doc.data().Category == "Electrical Engineering"){
-    //       this.cTotal = this.cTotal + 1;
-    //     }
-
-    //     if((doc.data().Category == "Plumbing") && (doc.data().Status == true)){
-    //       this.pWorking = this.pWorking + 1;
-    //     }else if((doc.data().Category == "Plumbing") && (doc.data().Status == false)) {
-    //       this.pNotWorking = this.pNotWorking + 1;
-    //     }
-
-    //     if(doc.data().Category == "Plumbing"){
-    //       this.pTotal = this.pTotal + 1;
-    //     }
-
-    //     this.GraphData.push({
-    //       Working: this.working,
-    //       NotWorking: this.not_working,
-    //       TotalGrads: this.total_grads
-    //     })
-    //     });
-    // });
-
-    this.db.collection("category/").get().then((querySnapshot) => {
+    this.db.collection("Graduate/").get().then((querySnapshot) => {
       querySnapshot.forEach((doc) => {
         // console.log(doc.data().Address);
         this.GraduateArray.push(doc.data());
@@ -161,101 +151,94 @@ export class HomeComponent implements OnInit {
         }
 
         if((doc.data().Category == "Plumbing") && (doc.data().Status == true)){
-          this.pWorking = this.pWorking + 1;
+          this.pWorking = this.pWorking + 23;
         }else if((doc.data().Category == "Plumbing") && (doc.data().Status == false)) {
-          this.pNotWorking = this.pNotWorking + 1;
+          this.pNotWorking = this.pNotWorking + 43;
         }
 
         if(doc.data().Category == "Plumbing"){
           this.pTotal = this.pTotal + 1;
         }
+        
 
         this.GraphData.push({
           Working: this.working,
           NotWorking: this.not_working,
           TotalGrads: this.total_grads
         })
+
+        });
+
+        this.pieChart = new Chart('Pie01', {
+          type: 'pie',
+          data: {
+            datasets: [{
+              // label: 'Number of Users Registered Monthly',
+              data: [43, 65],
+              backgroundColor: [
+                '#E4A9A8',
+                '#26C6DA',
+                'yellow'
+              ],
+              label: 'Dataset 1'
+            }],
+            labels: [
+              'Working',
+              'Not Working',
+            ]
+          },
+          options: {
+            responsive: true
+          }
+        });
+
+        this.pieChart = new Chart('Pie02', {
+          type: 'pie',
+          data: {
+            datasets: [{
+              // label: 'Number of Users Registered Monthly',
+              data: [41, 23],
+              backgroundColor: [
+                '#E4A9A8',
+                '#26C6DA',
+                'yellow'
+              ],
+              label: 'Dataset 1'
+            }],
+            labels: [
+              'Working',
+              'Not Working',
+            ]
+          },
+          options: {
+            responsive: true
+          }
+        });
+
+        this.pieChart = new Chart('Pie03', {
+          type: 'pie',
+          data: {
+            datasets: [{
+              // label: 'Number of Users Registered Monthly',
+              data: [5, 20],
+              backgroundColor: [
+                '#E4A9A8',
+                '#26C6DA',
+                'yellow'
+              ],
+              label: 'Dataset 1'
+            }],
+            labels: [
+              'Working',
+              'Not Working',
+            ]
+          },
+          options: {
+            responsive: true
+          }
         });
     });
 
-
-
-
-
-
-        // this.GraphData.push({
-        //   Working: this.working,
-        //   NotWorking: this.not_working,
-        //   TotalGrads: this.total_grads
-        // })
-        // });
-    // });
-
-    this.register_form = formGroup.group({
-      name: ["",[Validators.required]],
-      surname: ["",[Validators.required]],
-      gender: ["",[Validators.required]],
-      age: ["",[Validators.required]],
-      email: ["",[Validators.required]],
-      contact: ["",[Validators.required]],
-      address: ["",[Validators.required]],
-      qualification: ["",[Validators.required]],
-      category: ["",[Validators.required]],
-      price: ["",[Validators.required]],
-      password: ["",[Validators.required]],
-      confirm_password: ["",[Validators.required]],
-      status: ["",[Validators.required]]
-    })
-  }
-
-try(){
-  console.log(this.pos); 
-  this.route.navigateByUrl('register')
-}
-
-  
-  ngOnInit() {
-
-    // var MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-		// var color = Chart.helpers.color;
-		var horizontalBarChartData = {
-			labels: ['Carpentry'],
-			datasets: [{
-				label: 'Dataset 1',
-				// backgroundColor: color(window.chartColors.red).alpha(0.5).rgbString(),
-				// borderColor: window.chartColors.red,
-				borderWidth: 1,
-				data: this.cWorking
-			}]
-
-		};
-
-		window.onload = function() {
-
-			var myChart = new Chart('myChart', {
-				type: 'horizontalBar',
-				data: horizontalBarChartData,
-				options: {
-					// Elements options apply to all of the options unless overridden in a dataset
-					// In this case, we are setting the border of each horizontal bar to be 2px wide
-					elements: {
-						rectangle: {
-							borderWidth: 2,
-						}
-					},
-					responsive: true,
-					legend: {
-						position: 'right',
-					},
-					title: {
-						display: true,
-						text: 'Chart.js Horizontal Bar Chart'
-					}
-				}
-			});
-
-    };
-    
     console.log(this.coords)
     
     var coordinates = document.getElementById('coordinates');
