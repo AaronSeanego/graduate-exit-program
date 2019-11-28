@@ -16,10 +16,11 @@ import { HomeComponent } from './components/home/home.component';
 import { AngularFirestoreModule  } from '@angular/fire/firestore';
 import { AngularFireModule } from '@angular/fire';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import {MatGridListModule} from '@angular/material/grid-list';
 import {HttpClientModule} from '@angular/common/http'
 import { GooglePlaceModule } from "ngx-google-places-autocomplete";
 import { ViewGradsComponent } from './components/view-grads/view-grads.component';
+import {MatCardModule} from '@angular/material/card';
 
 
 var firebaseConfig = {
@@ -59,7 +60,9 @@ firebase.analytics();
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
-    MatIconModule
+    MatIconModule,
+    MatGridListModule,
+    MatCardModule
   ],
   providers: [
     ExitProgramService

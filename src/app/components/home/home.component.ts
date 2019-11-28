@@ -10,6 +10,7 @@ import { ExitProgramService } from 'src/app/Service/exit-program.service';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { JsonPipe } from '@angular/common';
+import { Chart } from 'chart.js';
 
 @Component({
   selector: 'app-home',
@@ -114,7 +115,7 @@ try(){
   
   ngOnInit() {
 
-      var Chart = require('chart.js');
+      // var Chart = require('chart.js');
         var myChart = new Chart('myChart', {
           type: 'line',
           data: {

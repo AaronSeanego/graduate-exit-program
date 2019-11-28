@@ -1,15 +1,52 @@
-body { margin:0; padding:0; }
-#map { position:absolute; top:40px; bottom:0; width:57%;height: 30%;right: 10px; }
-.coordinates {
-    background: rgba(0,0,0,0.5);
-    color: #fff;
-    position: absolute;
-    bottom: 40px;
-    left: 10px;
-    padding:5px 10px;
-    margin: 0;
-    font-size: 11px;
-    line-height: 18px;
-    border-radius: 3px;
-    display: none;
+// body { margin:0; padding:0; }
+// #map { position:absolute; top:40px; bottom:0; width:57%;height: 30%;right: 10px; }
+// .coordinates {
+//     background: rgba(0,0,0,0.5);
+//     color: #fff;
+//     position: absolute;
+//     bottom: 40px;
+//     left: 10px;
+//     padding:5px 10px;
+//     margin: 0;
+//     font-size: 11px;
+//     line-height: 18px;
+//     border-radius: 3px;
+//     display: none;
+//     }
+.header {
+    width: 100%;
+    background: brown;
+    height: 70px;
+    h1 {
+        position: absolute;
+        left: 12%;
+        right: 70%;
+        color: white;
     }
+}
+
+.sidebar {
+    height: 93%;
+    background: linear-gradient(brown, rgb(91, 114, 122));
+    top: 40%;
+    width: 12%;
+    button {
+        color: white;
+        width: 50px;
+        top: 30%;
+    }
+    img {
+        position: absolute;
+        left: 50px;
+        top: 5%;
+    }
+}
+
+.charts {
+    position: absolute;
+    top: 85px;
+    left: 15%;
+    float: left;
+    width: 600px;
+    height: 700px;
+}

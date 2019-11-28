@@ -1,17 +1,28 @@
+<!-- <div class="fullmap" #map id='map'></div> -->
+<!-- <pre id='coordinates' class='coordinates'></pre> -->
+<div class="header">
+
+    <h1>DashBoard</h1>
+</div>
 
 
-<div  #map id='map'></div>
-<pre id='coordinates' class='coordinates'></pre>
-<button (click)="try()">register page</button>
+<div class="sidebar">
+    <img src="assets/deepeg.png">
+    <button mat-button (click)="try()"><b>Register</b></button>
+    <br>
+    <button mat-button (click)="loc()"><b>Address</b></button>
+    <br>
 
-<button (click)="loc()">get address</button>
-<button (click)="gone()">console coords</button>
+    <button mat-button (click)="gone()"><b>Consolecoords</b></button>
+</div>
 
-<section style="float: left;">
-    <canvas id="myChart" width="400" height="400"></canvas>
 
-    <!-- <canvas id = "Pie" width="400" height="400"></canvas> -->
+<section class="charts">
+    <canvas id="myChart"></canvas>
+
+    <!-- <canvas id="Pie" width="400" height="400"></canvas> -->
 </section>
+
 
 <!-- <div>
     <table>
@@ -59,9 +70,9 @@
             Pick your favorite hero
             (<label><input type="checkbox" checked (change)="showSad = !showSad">show sad</label>)
           </div> -->
-       
 
-         <!-- <select [(ngModel)]="hero">
+
+<!-- <select [(ngModel)]="hero">
              <ng-container *ngFor="let h of heroes">
               <ng-container *ngIf="showSad || h.emotion !== 'sad'">
                 <option [ngValue]="h">{{h.name}} ({{h.emotion}})</option>
@@ -155,6 +166,6 @@
     </form>
 </div> -->
 
-<section>
+<!-- <section>
     <canvas id="myChart"></canvas>
-</section>
+</section> -->
