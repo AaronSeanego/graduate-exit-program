@@ -1,6 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
+import {MatButtonModule} from '@angular/material/button';
+import {MatIconModule} from '@angular/material/icon';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LogInComponent } from './log-in/log-in.component';
@@ -12,9 +15,13 @@ import {AngularFireAuthModule} from '@angular/fire/auth';
 import { HomeComponent } from './components/home/home.component';
 import { AngularFirestoreModule  } from '@angular/fire/firestore';
 import { AngularFireModule } from '@angular/fire';
-import {HttpClientModule} from '@angular/common/http'
-import { MatProgressBarModule,MatTableModule,MatTableDataSource } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import {HttpClientModule} from '@angular/common/http'
+import { GooglePlaceModule } from "ngx-google-places-autocomplete";
+import { ViewGradsComponent } from './components/view-grads/view-grads.component';
+import { MatProgressBarModule,MatTableModule } from '@angular/material';
+
 
 var firebaseConfig = {
   apiKey: "AIzaSyDkju7iNCsC27HKxBjDOkNGEWUXY-Pt9eo",
@@ -35,7 +42,8 @@ firebase.analytics();
     AppComponent,
     LogInComponent,
     RegisterFormComponent,
-    HomeComponent
+    HomeComponent,
+    ViewGradsComponent
   ],
   imports: [
     BrowserModule,
@@ -50,6 +58,12 @@ firebase.analytics();
     MatTableModule,
     AngularFireModule.initializeApp(firebaseConfig),
     BrowserAnimationsModule,
+    GooglePlaceModule,
+    BrowserAnimationsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
+    MatIconModule
   ],
   providers: [
     ExitProgramService
