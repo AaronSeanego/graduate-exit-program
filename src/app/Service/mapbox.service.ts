@@ -50,4 +50,10 @@ export class MapboxService {
         return res.features;
       }))
   }
+
+  geoloc(arrr){
+    var url = "https://api.mapbox.com/geocoding/v5/mapbox.places/"
+ return this.http.get(url+ arrr[0] + "%2C%" + arrr[1] + ".json?access_token=pk.eyJ1IjoibmVvLXB1bGUiLCJhIjoiY2p4cTF6Z2huMGx6czNtbnY2aWdwdWU5NiJ9._Dj2fBUZgCoryf1ehZTweQ")
+              
+  }
 }
