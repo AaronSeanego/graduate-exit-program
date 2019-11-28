@@ -55,6 +55,7 @@ import {
   MatToolbarModule,
   MatTooltipModule,
 } from '@angular/material';
+import { DisplayGradsComponent } from './display-grads/display-grads.component';
 
 var firebaseConfig = {
   apiKey: "AIzaSyDkju7iNCsC27HKxBjDOkNGEWUXY-Pt9eo",
@@ -76,7 +77,8 @@ firebase.analytics();
     LogInComponent,
     RegisterFormComponent,
     HomeComponent,
-    ViewGradsComponent
+    ViewGradsComponent,
+    DisplayGradsComponent
   ],
   imports: [
     BrowserModule,
