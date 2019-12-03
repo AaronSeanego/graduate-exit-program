@@ -15,15 +15,21 @@ export class LogInComponent implements OnInit {
 
   // validations_form: FormGroup;
   // errorMessage: string = '';
-  email = new FormControl('', [Validators.required, Validators.email]);
-  password = new FormControl('', Validators.compose([Validators.minLength(5),Validators.required]));
+  // email = new FormControl('', [Validators.required, Validators.email]);
+  // password = new FormControl('', Validators.compose([Validators.minLength(5),Validators.required]));
 
   hide = true;
   
   mail;
   pass;
 
-  constructor(
+
+  loginForm= this.fb.group({
+    email: [null, Validators.compose([ Validators.pattern('^[a-zA-Z_.+-]+@[a-zA-Z-]+.[a-zA-Z0-9-.]+$'), Validators.required])],
+    password: [null, Validators.compose([ Validators.minLength(6), Validators.maxLength(12), Validators.required])],
+  });
+  
+  constructor(private fb: FormBuilder,
     private authService : AuthGuardService,
     private route :Router,) {
     // this.LogInForm = formGroup.group({
@@ -32,25 +38,28 @@ export class LogInComponent implements OnInit {
     // })
   }
 
-  getErrorMessage() {
-    return this.email.hasError('required') ? 'You must enter a value' :
-        this.email.hasError('email') ? 'Not a valid email' :
-            '';
-  }
-  getErrorMessages() {
-    return this.password.hasError('required') ? 'You must enter a value' :
-        this.password.hasError('password') ? 'Not a valid password' :
-            '';
-  }
-  async login() {
-    console.log(this.mail+"  &&   "+this.pass)
-    this.authService.signIn(this.mail, this.pass).then(async () => {
-      // this.errorMessage = "";
-      this.route.navigateByUrl('home')
-      console.log(this.mail+"  &&   "+this.pass)
-    });
+  // getErrorMessage() {
+  //   return this.email.hasError('required') ? 'You must enter a value' :
+  //       this.email.hasError('email') ? 'Not a valid email' :
+  //           '';
+  // }
+  // getErrorMessages() {
+  //   return this.password.hasError('required') ? 'You must enter a value' :
+  //       this.password.hasError('password') ? 'Not a valid password' :
+  //           '';
+  // }
+  // async login() {
+  //   console.log(this.mail+"  &&   "+this.pass)
+  //   this.authService.signIn(this.mail, this.pass).then(async () => {
+  //     // this.errorMessage = "";
+  //     this.route.navigateByUrl('home')
+  //     console.log(this.mail+"  &&   "+this.pass)
+  //   });
+    async login() {
+      this.authService.signIn(this.loginForm.value.email, this.loginForm.value.password).then(async () => {
+      });
+    }
 
-  }
   
   // logout(){
   // this.authService.signOut();
@@ -81,5 +90,4 @@ export class LogInComponent implements OnInit {
   // };
   
   }
-
 
