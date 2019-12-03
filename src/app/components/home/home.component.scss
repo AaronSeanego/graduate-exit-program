@@ -1,18 +1,12 @@
-// body { margin:0; padding:0; }
-// #map { position:absolute; top:40px; bottom:0; width:57%;height: 30%;right: 10px; }
-// .coordinates {
-//     background: rgba(0,0,0,0.5);
-//     color: #fff;
-//     position: absolute;
-//     bottom: 40px;
-//     left: 10px;
-//     padding:5px 10px;
-//     margin: 0;
-//     font-size: 11px;
-//     line-height: 18px;
-//     border-radius: 3px;
-//     display: none;
-//     }
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+}
+
 .header {
     width: 100%;
     background: brown;
@@ -25,28 +19,25 @@
     }
 }
 
-.sidebar {
-    height: 93%;
-    background: linear-gradient(brown, rgb(91, 114, 122));
-    top: 40%;
-    width: 12%;
-    button {
-        color: white;
-        width: 50px;
-        top: 30%;
-    }
-    img {
-        position: absolute;
-        left: 50px;
-        top: 5%;
-    }
+.grid-container {
+    margin: 15px;
+    left: 23%;
 }
 
-.charts {
+.dashboard-card {
     position: absolute;
-    top: 85px;
-    left: 15%;
-    float: left;
-    width: 600px;
-    height: 700px;
+    top: 15px;
+    left: 15px;
+    right: 15px;
+    bottom: 15px;
+}
+
+.more-button {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+}
+
+.dashboard-card-content {
+    text-align: center;
 }

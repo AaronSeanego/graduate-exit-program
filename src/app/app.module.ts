@@ -50,9 +50,13 @@ import {
   MatTabsModule,
   MatToolbarModule,
   MatTooltipModule,
+  MatGridListModule,
 } from '@angular/material';
 import { DisplayGradsComponent } from './display-grads/display-grads.component';
 import { Chart } from 'chart.js';
+import { MenuComponent } from './menu/menu.component';
+import { MainNavComponent } from './main-nav/main-nav.component';
+import { LayoutModule } from '@angular/cdk/layout';
 
 var firebaseConfig = {
   apiKey: "AIzaSyDkju7iNCsC27HKxBjDOkNGEWUXY-Pt9eo",
@@ -75,7 +79,9 @@ firebase.analytics();
     RegisterFormComponent,
     HomeComponent,
     ViewGradsComponent,
-    DisplayGradsComponent
+    DisplayGradsComponent,
+    MenuComponent,
+    MainNavComponent
   ],
   imports: [
     BrowserModule,
@@ -127,7 +133,9 @@ firebase.analytics();
     MatTooltipModule,
     MatButtonModule,
     MatIconModule,
-    MatCardModule
+    MatCardModule,
+    MatGridListModule,
+    LayoutModule
   ],
   providers: [
     ExitProgramService
