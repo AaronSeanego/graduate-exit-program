@@ -7,6 +7,12 @@
         <h1>DashBoard</h1>
     </div>
 
+
+
+
+
+
+
     <div class="grid-container">
         <mat-grid-list cols="2" rowHeight="500px">
             <mat-grid-tile>
@@ -77,202 +83,8 @@
         </mat-grid-list>
 
     </div>
-</section>
 
-<!-- <section>
-    <canvas id = "CarpenterChart" width="100" height="100"></canvas>
-    <canvas id = "EngineeringChart" width="100" height="100"></canvas>
-    <canvas id = "PlumbingChart" width="100" height="100"></canvas>
-</section> -->
 
-<div>
-    <table>
-        <th>Name</th>
-        <th>Surname</th>
-        <th>Gender</th>
-        <th>Age</th>
-        <th>Email</th>
-        <th>Contact</th>
-        <th>Address</th>
-        <th>Qualification</th>
-        <th>Category</th>
-        <th>Price</th>
+</body>
 
-        <tr *ngFor = "let grads of GraduateArray">
-            <td>{{grads.Username}}</td>
-            <td>{{grads.Surname}}</td>
-            <td>{{grads.Gender}}</td>
-            <td>{{grads.Age}}</td>
-            <td>{{grads.Email}}</td>
-            <td>{{grads.Contact}}</td>
-            <td>{{grads.Address}}</td>
-            <td>{{grads.Qualification}}</td>
-            <td>{{grads.Category}}</td>
-            <td>{{grads.Price}}</td>
-        </tr>
-        <tr>
-            <td>Working: {{working}}</td>
-        </tr>
-
-        <tr>
-            <td>Not working: {{not_working}}</td>
-        </tr>
-
-        <tr>
-            <td>Total: {{total_grads}}</td>
-        </tr>
-
-        <tr>------------------------------</tr>
-
-        <tr>
-            <td>Carpenters working: {{cWorking}}</td>
-        </tr>
-
-        <tr>
-            <td>Carpenters not working: {{cNotWorking}}</td>
-        </tr>
-
-        <tr>
-            <td>Total Carpenters: {{cTotal}}</td>
-        </tr>
-
-        <tr>-------------------------------</tr>
-
-        <tr>
-            <td>Electrical engineers working: {{egWorking}}</td>
-        </tr>
-
-        <tr>
-            <td>Electrical engineers not working: {{egNotWorking}}</td>
-        </tr>
-
-        <tr>
-            <td>Electrical engineers: {{egTotal}}</td>
-        </tr>
-
-        <tr>----------------------------------</tr>
-
-        <tr>
-            <td>Plumbers working: {{pWorking}}</td>
-        </tr>
-
-        <tr>
-            <td>Plumbing not working: {{pNotWorking}}</td>
-        </tr>
-
-        <tr>
-            <td style = "color: rgb(227, 8, 247);">Plumbers: {{pTotal}}</td>
-        </tr>
-    <!-- <tr>
-        <td class="dropdown" >
-                {{grads.course}}
-                </td>
-              
-            </tr> -->
-        <!-- <div>
-            Pick your favorite hero
-            (<label><input type="checkbox" checked (change)="showSad = !showSad">show sad</label>)
-          </div>
-       
-
-         <select [(ngModel)]="hero">
-             <ng-container *ngFor="let h of heroes">
-              <ng-container *ngIf="showSad || h.emotion !== 'sad'">
-                <option [ngValue]="h">{{h.name}} ({{h.emotion}})</option>
-              </ng-container>
-            </ng-container> 
-        </select>   --
-        <tr>
-        <td class="dropdown"  *ngFor="let cat of categories">
-            {{cat.course}}
-            </td>
-          
-        </tr> -->
-    </table>
-
-    <section style = "float: left;">
-        <canvas id = "CarpenterChart" width="700" height="400"></canvas>
-    
-        <!-- <div style = "margin-bottom: 40px;">
-            <label>Carpenters</label><canvas id = "Pie01" width="100" height="100"></canvas><label style = "float: right;">{{cTotal}}</label>
-        </div> -->
-    </section>
-</div>
-
-<!-- <div>
-    <form [formGroup] = "register_form">
-        <tr>
-            <td>
-                <input type = "text" placeholder = "Name" [(ngModel)] = "name" formControlName = "name"/>
-            </td>
-        </tr>
-
-        <tr>
-            <td>
-                <input type = "text" placeholder = "Surname" [(ngModel)] = "surname" formControlName = "surname"/>
-            </td>
-        </tr>
-        
-        <tr>
-            <td>
-                <input type = "text" placeholder = "Gender" [(ngModel)] = "gender" formControlName = "gender"/>
-            </td>
-        </tr>
-
-        <tr>
-            <td>
-                <input type = "text" placeholder = "Age" [(ngModel)] = "age" formControlName = "age"/>
-            </td>
-        </tr>
-
-        <tr>
-            <td>
-                <input type = "text" placeholder = "Email" [(ngModel)] = "email" formControlName = "email"/>
-            </td>
-        </tr>
-
-        <tr>
-            <td>
-                <input type = "text" placeholder = "Contact" [(ngModel)] = "contact" formControlName = "contact"/>
-            </td>
-        </tr>
-
-        <tr>
-            <td>
-                <input type = "text" placeholder = "Address" [(ngModel)] = "address" formControlName = "address"/>
-            </td>
-        </tr>
-
-        <tr>
-            <td>
-                <input type = "text" placeholder = "Qualification" [(ngModel)] = "qualification" formControlName = "qualification"/>
-            </td>
-        </tr>
-
-        <tr>
-            <td>
-                <input type = "text" placeholder = "Price" [(ngModel)] = "price" formControlName = "price"/>
-            </td>
-        </tr>
-        
-        <tr>
-            <td>
-                <input type = "text" placeholder = "Category" [(ngModel)] = "category" formControlName = "category"/>
-            </td>
-        </tr>
-
-        <tr>
-            <td>
-                <input type = "password" placeholder = "Password" [(ngModel)] = "password" formControlName = "password"/>
-            </td>
-        </tr>
-
-        <tr>
-            <td>
-                <input type = "password" placeholder = "Confirm Password" [(ngModel)] = "confirm_password" formControlName = "confirm_password"/>
-            </td>
-        </tr>
-
-        <tr><button class = "create_account" (click) = "CreateAccount()">Create Account</button></tr>
-    </form>
-</div> -->
+</html>
