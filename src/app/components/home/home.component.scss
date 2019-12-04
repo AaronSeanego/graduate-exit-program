@@ -1,15 +1,43 @@
-body { margin:0; padding:0; }
-#map { position:absolute; top:40px; bottom:0; width:57%;height: 30%;right: 10px; }
-.coordinates {
-    background: rgba(0,0,0,0.5);
-    color: #fff;
-    position: absolute;
-    bottom: 40px;
-    left: 10px;
-    padding:5px 10px;
+html,
+body {
+    height: 100%;
+}
+
+body {
     margin: 0;
-    font-size: 11px;
-    line-height: 18px;
-    border-radius: 3px;
-    display: none;
+}
+
+.header {
+    width: 100%;
+    background: brown;
+    height: 70px;
+    h1 {
+        position: absolute;
+        left: 12%;
+        right: 70%;
+        color: white;
     }
+}
+
+.grid-container {
+    margin: 15px;
+    left: 23%;
+}
+
+.dashboard-card {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    right: 15px;
+    bottom: 15px;
+}
+
+.more-button {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+}
+
+.dashboard-card-content {
+    text-align: center;
+}
