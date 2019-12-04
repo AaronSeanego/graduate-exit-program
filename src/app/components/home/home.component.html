@@ -23,6 +23,11 @@
     </div>
 </section>
 
+<!-- <section>
+    <canvas id = "CarpenterChart" width="100" height="100"></canvas>
+    <canvas id = "EngineeringChart" width="100" height="100"></canvas>
+    <canvas id = "PlumbingChart" width="100" height="100"></canvas>
+</section> -->
 
 <div>
     <table>
@@ -100,7 +105,7 @@
         </tr>
 
         <tr>
-            <td>Plumbers: {{pTotal}}</td>
+            <td style = "color: rgb(227, 8, 247);">Plumbers: {{pTotal}}</td>
         </tr>
     <!-- <tr>
         <td class="dropdown" >
@@ -129,7 +134,13 @@
         </tr> -->
     </table>
 
-   
+    <section style = "float: left;">
+        <canvas id = "CarpenterChart" width="700" height="400"></canvas>
+    
+        <!-- <div style = "margin-bottom: 40px;">
+            <label>Carpenters</label><canvas id = "Pie01" width="100" height="100"></canvas><label style = "float: right;">{{cTotal}}</label>
+        </div> -->
+    </section>
 </div>
 
 <!-- <div>
@@ -209,4 +220,3 @@
         <tr><button class = "create_account" (click) = "CreateAccount()">Create Account</button></tr>
     </form>
 </div> -->
-<!-- <canvas id="pieChart" width="700" height="370"></canvas> -->
